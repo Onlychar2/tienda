@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Pago</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+    .payment-options {
+      display: block;
+      margin-top: 20px;
+    }
+
+    .payment-options a {
+      display: block;
+      text-decoration: none;
+      margin-bottom: 15px;
+    }
+
+    .paypal-btn, .zelle-btn, .cashapp-btn {
+      color: white;
+      text-align: center;
+      padding: 12px;
+      border-radius: 5px;
+      font-size: 16px;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .paypal-btn {
+      background-color: #0070ba;
+    }
+
+    .zelle-btn {
+      background-color: #0066b3;
+    }
+
+    .cashapp-btn {
+      background-color: #00b47e;
+    }
+
+    .payment-options img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Formulario de Pago</h2>
+    <form action="procesar_pago.php" method="POST">
+      <!-- Datos del usuario -->
+      <label for="name">Nombre:</label>
+      <input type="text" name="name" required>
+      
+      <label for="email">Correo Electrónico:</label>
+      <input type="email" name="email" required>
+      
+      <label for="plan">Selecciona un Plan:</label>
+      <select name="plan" required>
+        <option value="1_mes">$20 - Plan 1 Mes</option>
+        <option value="3_meses">$55 - Plan 3 Meses</option>
+        <option value="1_ano">$80 - Plan 1 Año</option>
+      </select>
+      
+      <!-- Botones de pago con iconos -->
+      <div class="payment-options">
+        <!-- Botón de PayPal -->
+        <a href="https://www.paypal.com/ncp/payment/A7XBPXNTQUWRJ" target="_blank">
+          <button type="button" class="paypal-btn">
+            <img src="https://d1muf25xaso8hp.cloudfront.net/https://meta-l.cdn.bubble.io/f1626704239965x154187278446211260/Paypal_Recurring_Payments_Elements.gif?w=&h=&auto=compress&dpr=1&fit=max" alt="PayPal">
+            Pagar con PayPal
+          </button>
+        </a>
+        
+        <!-- Botón de Zelle -->
+        <a href="https://wa.me/12393575195?text=Hola%20quiero%20pagar%20con%20Zelle" target="_blank">
+          <button type="button" class="zelle-btn">
+            <img src="https://cellularnews.com/wp-content/uploads/2020/11/Untitled-design-4-e1605749865370.jpg" alt="Zelle">
+            Pagar con Zelle
+          </button>
+        </a>
+        
+        <!-- Botón de Cash App -->
+        <a href="https://wa.me/12393575195?text=Hola%20quiero%20pagar%20con%20Cashapp" target="_blank">
+          <button type="button" class="cashapp-btn">
+            <img src="https://logos-world.net/wp-content/uploads/2020/11/Cash-App-Logo.png" alt="Cash App">
+            Pagar con Cash App
+          </button>
+        </a>
+      </div>
+    
+    </form>
+  </div>
+</body>
+</html>

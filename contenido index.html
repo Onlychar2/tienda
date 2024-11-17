@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrusel de Películas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .carousel-container {
+      position: relative;
+      max-width: 100%;
+      margin: 20px auto;
+      overflow: hidden;
+    }
+
+    .carousel {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel img {
+      width: 300px;
+      height: 450px;
+      object-fit: cover;
+      margin-right: 15px;
+      border-radius: 10px;
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 24px;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    /* Estilos para categorías */
+    .category-container {
+      padding: 20px;
+      background-color: #fff;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    .category-container h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .category-title {
+      font-size: 1.5em;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .category-description {
+      font-size: 1em;
+      color: #555;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .category-cards {
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding: 10px 0;
+    }
+
+    .category-card {
+  width: 280px;
+  height: 380px;
+  border-radius: 10px;
+  background-color: #eee;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  background-size: cover; /* Asegura que las imágenes cubran completamente el área de la tarjeta */
+  background-position: center; /* Asegura que las imágenes se centren */
+}
+
+    .category-card:hover {
+      transform: scale(1.05);
+    }
+
+    /* Hacer responsive */
+    @media (max-width: 768px) {
+      .carousel img {
+        width: 250px;
+        height: 375px;
+      }
+
+      .category-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .category-card {
+        width: 100px;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Explora Nuestros Contenidos</h1>
+    <p>Desliza las imágenes para ver más películas y series.</p>
+  </header>
+
+  <!-- Carrusel de Películas -->
+  <div class="carousel-container">
+    <button class="carousel-button prev" onclick="moveSlide(-1)">&#10094;</button>
+
+    <div class="carousel" id="carousel">
+      <img src="https://m.media-amazon.com/images/M/MV5BZDMyYWU4NzItZDY0MC00ODE2LTkyYTMtMzNkNDdmYmFhZDg0XkEyXkFqcGc@._V1_.jpg" alt="Película Estreno 1">
+      <img src="https://m.media-amazon.com/images/M/MV5BZTk5ODY0MmQtMzA3Ni00NGY1LThiYzItZThiNjFiNDM4MTM3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Película Estreno 2">
+      <img src="https://m.media-amazon.com/images/M/MV5BZjM2M2E3YzAtZDJjYy00MDhkLThiYmItOGZhNzQ3NTgyZmI0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Película Estreno 3">
+      <img src="https://m.media-amazon.com/images/M/MV5BYmRlYzE3ZTYtNjIyZi00MWYyLWEzZDItOWI5NzM1Yjc0NmI5XkEyXkFqcGc@._V1_.jpg" alt="Película Estreno 4">
+      <img src="https://m.media-amazon.com/images/M/MV5BNTRlNmU1NzEtODNkNC00ZGM3LWFmNzQtMjBlMWRiYTcyMGRhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Película Estreno 5">
+      <img src="https://m.media-amazon.com/images/M/MV5BMDU0NjcwOGQtNjNjOS00NzQ3LWIwM2YtYWVmODZjMzQzN2ExXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Película Estreno 6">
+      <img src="https://cdn.posteritati.com/posters/000/000/073/657/the-substance-md-web.jpg" alt="Película Estreno 7">
+      <img src="https://m.media-amazon.com/images/M/MV5BNzc2MWUyYzctY2E4Ny00ZTlmLThjNTMtMTViZGI5NjcyN2EzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Película Estreno 8">
+
+    </div>
+
+    <button class="carousel-button next" onclick="moveSlide(1)">&#10095;</button>
+  </div>
+
+  <!-- Sección de Películas y Series -->
+  <div class="category-container">
+    <h2>Más Contenido</h2>
+
+    <!-- Películas de Estrenos -->
+    <div class="category">
+      <h3 class="category-title">Películas de Estrenos</h3>
+      <p class="category-description">Últimos lanzamientos de películas en alta definición.</p>
+      <div class="category-cards">
+        <div class="category-card" style="background-image: url('https://m.media-amazon.com/images/M/MV5BNjFhMzBlNzktMjE2Ni00YTMyLWI2YWUtYmM1N2QxMDQwZmZhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg');"></div>
+        <div class="category-card" style="background-image: url('https://m.media-amazon.com/images/M/MV5BYmU3MzYzOWEtOTdkZi00YzA1LTliMzQtNDdiZDBjY2FiNmFlXkEyXkFqcGc@._V1_.jpg');"></div>
+        <div class="category-card" style="background-image: url('https://m.media-amazon.com/images/M/MV5BMDcyZTNjOTEtNzc5Yy00Y2UzLThkMWYtNTY4YmM4OWI5OTMzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg');"></div>
+        <div class="category-card" style="background-image: url('https://m.media-amazon.com/images/M/MV5BZTU3YzdlNjQtY2ExOS00YjMyLTg2OWEtMzcwYmU0NWQzMmU1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg');"></div>
+      </div>
+    </div>
+
+    <!-- Películas Antiguas -->
+    <div class="category">
+      <h3 class="category-title">Películas Antiguas</h3>
+      <p class="category-description">Disfruta de los clásicos del cine de todos los tiempos.</p>
+      <div class="category-cards">
+        <div class="category-card" style="background-image: url('https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg');"></div>
+        <div class="category-card" style="background-image: url('https://m.media-amazon.com/images/M/MV5BMTM3NjA1NDMyMV5BMl5BanBnXkFtZTcwMDQzNDMzOQ@@._V1_.jpg');"></div>
+        <div class="category-card" style="background-image: url('https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg');"></div>
+      </div>
+    </div>
+
+    <!-- Sagas -->
+    <div class="category">
+      <h3 class="category-title">Sagas</h3>
+      <p class="category-description">Series de películas que marcaron época.</p>
+      <div class="category-cards">
+        <div class="category-card" style="background-image: url('https://m.media-amazon.com/images/M/MV5BOTA1Mzc2N2ItZWRiNS00MjQzLTlmZDQtMjU0NmY1YWRkMGQ4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg');"></div>
+        <div class="category-card" style="background-image: url('https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMTVlOWY4NTdiYmMwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg');"></div>
+        <div class="category-card" style="background-image: url('https://m.media-amazon.com/images/M/MV5BMTcwODc1MTMxM15BMl5BanBnXkFtZTYwMDg1NzY3._V1_FMjpg_UX1000_.jpg');"></div>
+      </div>
+    </div>
+
+    <!-- Series -->
+    <div class="category">
+      <h3 class="category-title">Series</h3>
+      <p class="category-description">Series populares y aclamadas por la crítica.</p>
+      <div class="category-cards">
+        <div class="category-card" style="background-image: url('https://m.media-amazon.com/images/M/MV5BYzM5ZWMxOGEtZjEyMC00YjQ0LThiYjEtZjVkZGEzN2NlOGEwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg');"></div>
+        <div class="category-card" style="background-image: url('https://m.media-amazon.com/images/M/MV5BM2QzMGVkNjUtN2Y4Yi00ODMwLTg3YzktYzUxYjJlNjFjNDY1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg');"></div>
+        <div class="category-card" style="background-image: url('https://m.media-amazon.com/images/M/MV5BYmJkOGNlNmEtMmQyOS00YjZiLTgxM2EtNmEzNzUzNTU5ODYwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg');"></div>
+      </div>
+    </div>
+
+    <!-- Canales -->
+    <div class="category">
+      <h3 class="category-title">Canales en Vivo</h3>
+      <p class="category-description">Accede a tus canales favoritos en alta calidad.</p>
+      <div class="category-cards">
+        <div class="category-card" style="background-image: url('https://yt3.googleusercontent.com/ytc/AIdro_lrAFsc7C4t12A8gv6_XmQkv3vn30y-N4nmFVoP1h9tT9M=s900-c-k-c0x00ffffff-no-rj');"></div>
+        <div class="category-card" style="background-image: url('https://cordcutting.com/wp-content/uploads/2018/08/big-four-logos-collage.jpg');"></div>
+        <div class="category-card" style="background-image: url('https://planetdish.com/wp-content/uploads/2024/01/DISHchannelguide_KIDS.png');"></div>
+        <div class="category-card" style="background-image: url('https://dish.scene7.com/is/image/dishenterprise/SLING-Marquee-Foreground-Sports-Schedules-Channel-Logos?$transparent-png-desktop$&fmt=png-alpha&dpr=off');"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let slideIndex = 0;
+
+// Función para mover el carrusel
+function moveSlide(direction) {
+  const carousel = document.getElementById("carousel");
+  const totalSlides = carousel.children.length;
+
+  // Calcular el índice de la nueva imagen
+  slideIndex = (slideIndex + direction + totalSlides) % totalSlides;
+
+  // Calcular el valor de desplazamiento
+  const newTransformValue = -slideIndex * 315;  // 315px es el ancho de cada imagen + margen
+
+  // Aplicar la transformación
+  carousel.style.transform = `translateX(${newTransformValue}px)`;
+}
+
+  </script>
+
+</body>
+</html>

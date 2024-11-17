@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cine loop Premium: canales en vivo, películas y series al alcance de todos tus dispositivos.">
+    <title>Cine loop</title>
+    <style>
+        /* Estilos Generales */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: #121212;
+            color: #fff;
+        }
+
+        /* Cabecera */
+        header {
+            background: linear-gradient(90deg, #00c4ff, #005eff);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: url('https://media.istockphoto.com/id/1460848181/photo/black-couple-watches-professional-soccer-match-on-tv-sitting-on-a-couch-at-home-in-the.jpg?s=2048x2048&w=is&k=20&c=ckGZfO4TfBCFhY921-Macb5GxQeSH6iPocDDvZwq7E8=') no-repeat center center/cover;
+            color: #fff;
+            position: relative;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            z-index: 10;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .btn-primary {
+            background: #ffd700;
+            color: #121212;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background: #fff;
+        }
+
+        /* Sección General */
+        .section {
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #00c4ff;
+            margin-bottom: 1rem;
+        }
+
+        /* Cards */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .card {
+            background: #1c1c1c;
+            border-radius: 10px;
+            padding: 1.5rem;
+            max-width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 200px;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+            height: 200px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            margin-bottom: 1rem;
+        }
+
+        .btn-secondary {
+            background: #005eff;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .btn-secondary:hover {
+            background: #00c4ff;
+        }
+
+        /* Preguntas Frecuentes */
+        .faq {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #1c1c1c;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .faq-item:hover {
+            background: #252525;
+        }
+
+        .faq-item h3 {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            color: #ddd;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 100px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #005eff, #00c4ff);
+            padding: 2rem 1rem;
+            color: #fff;
+            text-align: center;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cards {
+                flex-direction: column;
+            }
+        }
+
+        .botones {
+    display: flex; /* Usa flexbox para alinear los botones en una fila */
+    justify-content: space-between; /* Espacio entre los botones */
+    gap: 15px; /* Espacio entre los botones */
+    margin-top: 20px; /* Espacio superior */
+}
+
+.boton {
+    background-color: #007BFF; /* Color de fondo azul */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    text-align: center; /* Centra el texto */
+    transition: background-color 0.3s ease; /* Efecto suave al cambiar el color de fondo */
+}
+
+.boton:hover {
+    background-color: #0056b3; /* Cambia el color cuando el usuario pasa el cursor sobre el botón */
+}
+
+.botones {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.boton-renovar, .boton-cambiar, .boton-ver-opciones, .boton-premium {
+    background-color: #007bff; /* Azul brillante */
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.boton-renovar:hover, .boton-cambiar:hover, .boton-ver-opciones:hover, .boton-premium:hover {
+    background-color: #0056b3; /* Azul más oscuro */
+    transform: scale(1.05); /* Efecto de aumento */
+}
+
+.boton-renovar:active, .boton-cambiar:active, .boton-ver-opciones:active, .boton-premium:active {
+    background-color: #00408d; /* Azul aún más oscuro */
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cine Loop</h1>
+        <nav>
+            <a href="#paquetes">Paquetes</a>
+            <a href="contenido index.html">Contenido</a>
+            <a href="#faq">Preguntas Frecuentes</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <h2>¡Todo tu entretenimiento en un solo lugar!</h2>
+        <p>Disfruta de canales en vivo, películas y series en cualquier dispositivo.</p>
+        <button class="btn-primary">Ver Paquetes</button>
+    </section>
+
+    <section id="paquetes" class="section">
+        <h2>Paquetes</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Básico 1 mes</h3>
+                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExczdydzFwcTR6YnFibG10cHA4bjRtcGVodXlvaWU2dWdpNXY3cXUwaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Q7uM05LZ1og2w1eVbJ/giphy.webp" alt="Paquete Básico">
+                <p class="price">$20</p>
+            <ul>
+                <li>✔️ 18K películas (estrenos)</li>
+                <li>✔️ 4K canales en vivo</li>
+                <li>✔️ 2K series</li>
+                <li>✔️ Canales de adultos</li>
+                <li>✔️ 4 dispositivos</li>
+                <li>✔️ Soporte técnico</li>
+            </ul>
+            <a href="formulario de pago index.html" class="btn-secondary">Contratar</a>
+
+            </div>
+            <div class="card">
+                <h3>Premium 3 meses</h3>
+                <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbm0wc2kxdWJhamxmcTNvNDAwaTdpaTA4M3gwNm1xbGludW94a3l1dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NRtZEyZjbLgr0BJ4B8/giphy.webp" alt="Paquete Premium">
+                <p class="price">$55 <span class="highlight">(Ahorra $5)</span></p>
+            <ul>
+                <li>✔️ 18K películas (estrenos)</li>
+                <li>✔️ 4K canales en vivo</li>
+                <li>✔️ 2K series</li>
+                <li>✔️ Canales de adultos</li>
+                <li>✔️ 4 dispositivos</li>
+                <li>✔️ Soporte técnico prioritario</li>
+                <li>🎁 Descuento al renovar</li>
+            </ul>
+            <a href="formulario de pago index.html" class="btn-secondary">Contratar</a>
+
+            </div>
+            <div class="card">
+                <h3>VIP 1 año</h3>
+                <img src="https://i.pinimg.com/originals/62/4b/ca/624bca142a8eb04ca2c9cb7d304058a7.gif" alt="Paquete VIP">
+                <p class="price">$80 <span class="highlight">(Ahorra $160)</span></p>
+            <ul>
+                <li>✔️ 18K películas (estrenos)</li>
+                <li>✔️ 4K canales en vivo</li>
+                <li>✔️ 2K series</li>
+                <li>✔️ Canales de adultos</li>
+                <li>✔️ 4 dispositivos</li>
+                <li>✔️ Soporte técnico 24/7</li>
+                <li>🎁 Regalo exclusivo</li>
+                <li>💡 Ahorra más de $160 comparado con el pago mensual</li>
+            </ul>
+            <a href="formulario de pago index.html" class="btn-secondary">Contratar</a>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section">
+        <h2>Preguntas Frecuentes</h2>
+        <div class="faq">
+            <div class="faq-item">
+                <h3>¿Cómo contratar?</h3>
+                <div class="faq-answer">Para suscribirte, simplemente selecciona el paquete de IPTV que prefieras en nuestra página, realiza el pago y recibirás las instrucciones para configurar tu dispositivo.
+
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3>¿Qué métodos de pago aceptan?</h3>
+                <div class="faq-answer">Aceptamos PayPal, zelle , cash app, tarjetas de crédito y débito.</div>
+            </div>
+            <div class="faq-item">
+                <h3>¿En qué dispositivos puedo ver IPTV?</h3>
+                <div class="faq-answer">Puedes ver IPTV en una variedad de dispositivos, como Smart TVs, teléfonos inteligentes, tabletas, computadoras, reproductores de medios como Amazon Fire TV, y decodificadores compatibles.</div>
+            </div>
+            <div class="faq-item">
+                <h3>¿Necesito una conexión de Internet rápida para usar IPTV?</h3>
+                <div class="faq-answer">Sí, para disfrutar de una transmisión fluida, recomendamos una conexión a Internet con al menos 10 Mbps de velocidad. Cuanto mayor sea la velocidad de Internet, mejor será la calidad de la transmisión.</div>
+            </div>
+            <div class="faq-item">
+                    <h3>¿Puedo cambiar mi paquete de IPTV después de la suscripción?</h3>
+                    <div class="faq-answer">Sí, puedes cambiar tu paquete de IPTV en cualquier momento. Solo contacta con nuestro equipo de soporte para realizar los ajustes y recibir la actualización correspondiente</div>
+            </div>
+            <div class="faq-item">
+                    <h3>¿Cómo puedo estar seguro de que no es una estafa?</h3>
+                    <div class="faq-answer">Nuestro servicio es completamente confiable. Contamos con una garantía de 30 días y hemos trabajado para ofrecer un servicio transparente y seguro. Si tienes dudas, también puedes contactarnos para recibir una prueba gratuita del servicio antes de realizar el pago. ¡Tu satisfacción es nuestra prioridad!                    </div>
+            </div>
+            <div class="faq-item">
+                <h3>¿Puedo probar el servicio antes de pagar?</h3>
+                <div class="faq-answer">¡Sí! Si deseas probar nuestro servicio antes de comprometerte, contáctanos y te ofreceremos una prueba gratuita. De este modo, podrás asegurarte de que nuestro IPTV se ajusta a tus necesidades antes de realizar el pago.</div>
+        </div>
+        <div class="faq-item">
+            <h3>¿Qué incluye la garantía de 30 días?</h3>
+            <div class="faq-answer">Términos de Uso y Garantía de 30 Días
+                ● Garantía de 30 días: El servicio está garantizado durante un mes.
+                ● Devoluciones: Solo se aceptan si:
+                ✅ La cuenta no funciona debido a falta de pago no resuelto.
+                ✅ Hay problemas con los límites de pantalla que no se pueden solucionar o reemplazar.
+                Condiciones: Las devoluciones se aplican solo en los casos anteriores.
+                ● No se aceptan cambios de servicio: Al pagar, contratas un servicio específico y no un depósito reembolsable. No se permiten cambios una vez realizado el pago.</div>
+    </div>
+
+    <div class="faq-item">
+        <h3>¿Qué pasa si tengo problemas con mi servicio IPTV?</h3>
+        <div class="faq-answer">Si experimentas algún inconveniente con el servicio, puedes contactarnos de inmediato. Trabajamos para resolver cualquier problema y garantizar una experiencia satisfactoria. Si el problema es debido a los casos mencionados en nuestra política de devoluciones, te ayudaremos a procesar el reembolso correspondiente.
+
+        </div>
+</div>
+
+<div class="faq-item">
+    <h3>¿Puedo obtener un reembolso si no estoy satisfecho con el servicio?</h3>
+    <div class="faq-answer">Ofrecemos una garantía de 30 días, lo que significa que si el servicio no funciona debido a los casos especificados, puedes solicitar un reembolso. Recuerda que no se aceptan cambios una vez realizado el pago.</div>
+</div>
+
+<div class="botones">
+    <a href="https://wa.me/12393575195?text=Hola,%20quiero%20contactar%20con%20el%20soporte%20para%20mi%20cuenta" class="boton">Contactar Soporte</a>
+    <a href="https://wa.me/12393575195?text=Hola,%20tengo%20una%20pregunta%20antes%20de%20pagar%20el%20servicio" class="boton">Hacer Pregunta Antes de Pagar</a>
+    <a href="https://wa.me/12393575195?text=Hola,%20me%20gustaría%20solicitar%20una%20prueba%20gratis%20del%20servicio." class="boton">Solicitar Prueba Gratis</a>
+</div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 IPTV Premium. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>
