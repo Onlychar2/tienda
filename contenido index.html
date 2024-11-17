@@ -5,132 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carrusel de Películas</title>
   <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-  }
-
-  header {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
-
-  .carousel-container {
-    position: relative;
-    max-width: 100%;
-    margin: 20px auto;
-    overflow: hidden;
-  }
-
-  .carousel {
-    display: flex;
-    transition: transform 0.5s ease;
-  }
-
-  .carousel img {
-    width: 300px;
-    height: 450px;
-    object-fit: cover;
-    margin-right: 15px;
-    border-radius: 10px;
-  }
-
-  .carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 24px;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 10;
-  }
-
-  .prev {
-    left: 10px;
-  }
-
-  .next {
-    right: 10px;
-  }
-
-  /* Estilos para categorías */
-  .category-container {
-    padding: 20px;
-    background-color: #fff;
-    margin-top: 20px;
-    border-radius: 10px;
-  }
-
-  .category-container h2 {
-    text-align: center;
-    color: #333;
-  }
-
-  .category-title {
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 10px;
-  }
-
-  .category-description {
-    font-size: 1em;
-    color: #555;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
-  .category-cards {
-    display: flex;
-    overflow-x: auto;
-    gap: 15px;
-    padding: 10px 0;
-    flex-wrap: nowrap; /* Evitar que las tarjetas se apilen en el móvil */
-    justify-content: flex-start;
-  }
-
-  .category-card {
-    width: 280px;
-    height: 380px;
-    border-radius: 10px;
-    background-color: #eee;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .category-card:hover {
-    transform: scale(1.05);
-  }
-
-  /* Hacer responsive */
-  @media (max-width: 768px) {
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+  
+    header {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+  
+    .carousel-container {
+      position: relative;
+      max-width: 100%;
+      margin: 20px auto;
+      overflow: hidden;
+    }
+  
+    .carousel {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+  
     .carousel img {
-      width: 250px;
-      height: 375px;
+      width: 300px;
+      height: 450px;
+      object-fit: cover;
+      margin-right: 15px;
+      border-radius: 10px;
     }
-
-    /* Modificar la visualización en móvil */
+  
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 24px;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+    }
+  
+    .prev {
+      left: 10px;
+    }
+  
+    .next {
+      right: 10px;
+    }
+  
+    /* Estilos para categorías */
+    .category-container {
+      padding: 20px;
+      background-color: #fff;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+  
+    .category-container h2 {
+      text-align: center;
+      color: #333;
+    }
+  
+    .category-title {
+      font-size: 1.5em;
+      color: #333;
+      margin-bottom: 10px;
+    }
+  
+    .category-description {
+      font-size: 1em;
+      color: #555;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  
     .category-cards {
-      flex-direction: row; /* Mostrar las tarjetas de categorías de forma horizontal */
-      overflow-x: scroll; /* Agregar desplazamiento horizontal */
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding: 10px 0;
+      flex-wrap: nowrap; /* Evitar que las tarjetas se apilen en el móvil */
+      justify-content: flex-start;
     }
-
+  
     .category-card {
-      width: 200px; /* Reducir el tamaño de las tarjetas en dispositivos móviles */
-      height: 300px;
-      margin-right: 10px;
+      width: 280px;
+      height: 380px;
+      border-radius: 10px;
+      background-color: #eee;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      background-size: cover;
+      background-position: center;
     }
-  }
-</style>
-
+  
+    .category-card:hover {
+      transform: scale(1.05);
+    }
+  
+    /* Hacer responsive */
+    @media (max-width: 768px) {
+      .carousel img {
+        width: 250px;
+        height: 375px;
+      }
+  
+      /* Modificar la visualización en móvil */
+      .category-cards {
+        flex-direction: row; /* Mostrar las tarjetas de categorías de forma horizontal */
+        overflow-x: scroll; /* Agregar desplazamiento horizontal */
+      }
+  
+      .category-card {
+        width: 200px; /* Reducir el tamaño de las tarjetas en dispositivos móviles */
+        height: 300px;
+        margin-right: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
 
